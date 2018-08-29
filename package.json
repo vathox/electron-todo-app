@@ -1,0 +1,14 @@
+{
+  "name": "electron-todo",
+  "version": "1.0.0",
+  "description": "Simple todo app in election",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Adam Dzierzko",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^2.0.8"
+  }
+}

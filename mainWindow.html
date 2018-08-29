@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+</head>
+<body>
+<nav>
+    <div class="naw-wrapper">
+        <a class="brand-logo center ">ToDo App</a>
+    </div>
+</nav>
+<h5 class="header col s12 light center">Double click to remove the item</h5>
+
+<ul>
+</ul>
+
+</body>
+
+<script>
+    const electron = require('electron')
+    const {ipcRenderer} = electron
+
+    const ul = document.querySelector('ul')
+
+    // Add ToDo
+    ipcRenderer.on('item:add', (e, item) => {
+      ul.className = 'collection'
+      const li = document.createElement('li')
+      const itemText = document.createTextNode(item)
+      li.appendChild(itemText);
+      li.className = 'collection-item'
+
+      ul.appendChild(li)
+    })
+
+    //Clear all todos
+    ipcRenderer.on('item:clear', (e, item) => {
+      ul.innerHTML = ''
+    })
+
+    //Remove single todo
+    ul.addEventListener('dblclick', (e) => {
+       e.target.remove();
+       if(ul.children.length === 0){
+         ul.className = ''
+       }
+    })
+{}
+</script>
+</html>
